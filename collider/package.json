@@ -1,0 +1,15 @@
+{
+  "name": "collider",
+  "type": "module",
+  "description": "A rectangle shape used for physics collision.",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npx c3fo build",
+    "dev": "npx c3fo build --dev",
+    "doc": "npx c3fo doc"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "c3-framework": "file:../../c3-framework-core"
+  }
+}
