@@ -393,6 +393,11 @@ class Instance
     return isFinite(this.x) && isFinite(this.y);
   }
 
+  // Construct thing, idk
+  IsOriginalSizeKnown(): boolean {
+    return false;
+  }
+
   _debugProperties(): KeyValue {
     return {};
   }

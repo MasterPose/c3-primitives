@@ -197,6 +197,10 @@ class EditorInstance extends SDK.IWorldInstanceBase {
         this._webglText = text;
     }
 
+    IsOriginalSizeKnown(): boolean {
+        return false;
+    }
+
     LoadC2Property(name: string, valueString: string) {
         return false;
     }
