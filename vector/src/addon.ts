@@ -8,12 +8,13 @@ const Config: PluginConfig = {
   version: "1.0.0.0",
   category: "general",
   author: "Master Pose",
-  description: "A 2-element structure that represents 2D coordinates or any other pair of numeric values.",
+  description:
+    "A 2-element structure that represents 2D coordinates or any other pair of numeric values.",
   icon: "icon.svg",
-  editorScripts: ['editor.js'],
+  editorScripts: ["editor.js"],
   website: "https://www.construct.net",
   documentation: "https://www.construct.net",
-  addonUrl: 'https://www.construct.net/addons/',
+  addonUrl: "https://www.construct.net/addons/",
   githubUrl: "https://github.com/Master Pose/Vector",
   info: {
     Set: {
@@ -25,39 +26,39 @@ const Config: PluginConfig = {
     AddCommonACEs: {
       Position: true,
       Angle: true,
-      SceneGraph: true
-    }
+      SceneGraph: true,
+    },
   },
   fileDependencies: {},
   properties: [
     {
-      id: 'radius',
-      name: 'Radius',
-      desc: 'The radius of the point on the editor',
-      type: 'integer',
+      id: "radius",
+      name: "Radius",
+      desc: "The radius of the point on the editor",
+      type: "integer",
       options: {
         interpolatable: false,
         initialValue: 16,
         minValue: 2,
-      }
+      },
     },
     {
-      id: 'label',
-      name: 'Label',
-      desc: 'Optional label to show below your vector',
-      type: 'text',
+      id: "label",
+      name: "Label",
+      desc: "Optional label to show below your vector",
+      type: "text",
       options: {
-        initialValue: '',
-        interpolatable: false
-      }
-    }
+        initialValue: "",
+        interpolatable: false,
+      },
+    },
   ],
   aceCategories: {
     general: "General",
-    conversion: 'Conversion',
-    calculation: 'Calculation',
-    angle: 'Angle',
-    'size-position': 'Size & Position',
+    conversion: "Conversion",
+    calculation: "Calculation",
+    angle: "Angle",
+    "size-position": "Size & Position",
   },
 };
 

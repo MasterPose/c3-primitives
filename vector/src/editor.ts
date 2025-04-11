@@ -27,30 +27,42 @@ function getConvexPolygonPoints(rect: SDK.Rect): number[] {
     return points;
 }
 
-function modifyQuad(quad: SDK.Quad, yOffset: number, newWidth: number, newHeight: number): SDK.Quad {
-    const centerX = (quad.getTlx() + quad.getTrx() + quad.getBrx() + quad.getBlx()) / 4;
-    const centerY = (quad.getTly() + quad.getTry() + quad.getBry() + quad.getBly()) / 4;
+function modifyQuad(
+    quad: SDK.Quad,
+    yOffset: number,
+    newWidth: number,
+    newHeight: number,
+): SDK.Quad {
+    const centerX =
+        (quad.getTlx() + quad.getTrx() + quad.getBrx() + quad.getBlx()) / 4;
+    const centerY =
+        (quad.getTly() + quad.getTry() + quad.getBry() + quad.getBly()) / 4;
 
     const halfNewWidth = newWidth / 2;
     const halfNewHeight = newHeight / 2;
 
     const modifiedQuad = new SDK.Quad(
-        centerX - halfNewWidth, centerY - halfNewHeight + yOffset,
-        centerX + halfNewWidth, centerY - halfNewHeight + yOffset,
-        centerX + halfNewWidth, centerY + halfNewHeight + yOffset,
-        centerX - halfNewWidth, centerY + halfNewHeight + yOffset
+        centerX - halfNewWidth,
+        centerY - halfNewHeight + yOffset,
+        centerX + halfNewWidth,
+        centerY - halfNewHeight + yOffset,
+        centerX + halfNewWidth,
+        centerY + halfNewHeight + yOffset,
+        centerX - halfNewWidth,
+        centerY + halfNewHeight + yOffset,
     );
 
     return modifiedQuad;
 }
 
 function getQuadSize(quad: SDK.Quad): { width: number; height: number } {
-    const width = Math.max(quad.getTrx(), quad.getBrx()) - Math.min(quad.getTlx(), quad.getBlx());
-    const height = Math.max(quad.getBry(), quad.getBly()) - Math.min(quad.getTly(), quad.getTry());
+    const width = Math.max(quad.getTrx(), quad.getBrx()) -
+        Math.min(quad.getTlx(), quad.getBlx());
+    const height = Math.max(quad.getBry(), quad.getBly()) -
+        Math.min(quad.getTly(), quad.getTry());
 
     return { width, height };
 }
-
 
 const tempRect = new SDK.Rect();
 const tempQuad = new SDK.Quad();
@@ -68,11 +80,11 @@ class EditorInstance extends SDK.IWorldInstanceBase {
     }
 
     GetRadius() {
-        return this._inst.GetPropertyValue('radius') ?? 16;
+        return this._inst.GetPropertyValue("radius") ?? 16;
     }
 
     GetLabel() {
-        return this._inst.GetPropertyValue('label') ?? '';
+        return this._inst.GetPropertyValue("label") ?? "";
     }
 
     Release() {
@@ -84,7 +96,7 @@ class EditorInstance extends SDK.IWorldInstanceBase {
     }
 
     OnPropertyChanged(id: string, value: EditorPropertyValueType): void {
-        if (id === 'radius') {
+        if (id === "radius") {
             this._inst.SetSize(value, value);
         }
     }
@@ -93,9 +105,8 @@ class EditorInstance extends SDK.IWorldInstanceBase {
         iRenderer.SetColorFillMode();
         iRenderer.SetColor(this._inst.GetColor());
         iRenderer.ConvexPoly(
-            getConvexPolygonPoints(this._inst.GetBoundingBox())
+            getConvexPolygonPoints(this._inst.GetBoundingBox()),
         );
-
 
         const label = this.GetLabel();
 
@@ -121,7 +132,7 @@ class EditorInstance extends SDK.IWorldInstanceBase {
     _DrawText(
         iRenderer: SDK.Gfx.IWebGLRenderer,
         iLayoutView: SDK.UI.ILayoutView,
-        text: SDK.Gfx.IWebGLText
+        text: SDK.Gfx.IWebGLText,
     ) {
         const texture = text.GetTexture();
 
@@ -161,29 +172,30 @@ class EditorInstance extends SDK.IWorldInstanceBase {
             iRenderer.Quad3(tempQuad, text.GetTexRect());
 
             iLayoutView.SetDefaultTransform(iRenderer);
-        }
-        else {
+        } else {
             iRenderer.SetTexture(texture);
             iRenderer.SetColor(this._inst.GetColor());
             iRenderer.Quad3(quad, text.GetTexRect());
         }
     }
 
-    _MaybeCreateWebGLText(iRenderer: SDK.Gfx.IWebGLRenderer, iLayoutView: SDK.UI.ILayoutView) {
+    _MaybeCreateWebGLText(
+        iRenderer: SDK.Gfx.IWebGLRenderer,
+        iLayoutView: SDK.UI.ILayoutView,
+    ) {
         if (this._webglText) return;
 
-        const text = iRenderer.CreateRendererText()
+        const text = iRenderer.CreateRendererText();
 
-        text.SetWordWrapMode('character');
+        text.SetWordWrapMode("character");
         text.SetLineHeight(0);
-        text.SetHorizontalAlignment('center');
-        text.SetVerticalAlignment('top');
+        text.SetHorizontalAlignment("center");
+        text.SetVerticalAlignment("top");
 
         text.SetTextureUpdateCallback(() => iLayoutView.Refresh());
 
         this._webglText = text;
     }
-
 
     LoadC2Property(name: string, valueString: string) {
         return false;
