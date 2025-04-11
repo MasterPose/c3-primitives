@@ -5,7 +5,7 @@ const Config: PluginConfig = {
   type: "world",
   id: "MasterPose_Vector",
   name: "Vector",
-  version: "1.0.0.0",
+  version: "1.0.1.0",
   category: "general",
   author: "Master Pose",
   description:
