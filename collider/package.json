@@ -3,6 +3,7 @@
   "type": "module",
   "description": "A rectangle shape used for physics collision.",
   "version": "1.0.0",
+  "author": "Luan Himmlisch",
   "scripts": {
     "build": "npx c3fo build",
     "dev": "npx c3fo build --dev",
@@ -10,6 +11,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "c3-framework": "file:../../c3-framework-core"
+    "c3-framework": "github:C3Framework/core"
   }
 }
