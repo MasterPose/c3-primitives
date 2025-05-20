@@ -5,7 +5,7 @@ const Config: PluginConfig = {
   type: "world",
   id: "MasterPose_Collider",
   name: "Collider",
-  version: "1.0.0.0",
+  version: "1.0.1.0",
   category: "general",
   author: "Master Pose",
   description: "A rectangle shape used for physics collision.",
