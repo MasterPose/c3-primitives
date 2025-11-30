@@ -1,4 +1,4 @@
-import { AceClass, Condition, Param, Plugin } from "c3-framework";
+import { AceClass, Plugin } from "@c3framework/core";
 import Config from "./addon";
 
 @AceClass()

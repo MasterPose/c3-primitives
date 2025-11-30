@@ -1,12 +1,4 @@
-import {
-  AceClass,
-  Action,
-  Behavior,
-  Condition,
-  Expression,
-  Param,
-  Plugin,
-} from "c3-framework";
+import { AceClass, Action, Condition, Expression, Param, Plugin } from "@c3framework/core";
 import Config from "./addon";
 
 @AceClass()

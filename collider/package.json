@@ -11,6 +11,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "c3-framework": "github:C3Framework/core"
+    "@c3framework/core": "^1.0.7"
   }
 }

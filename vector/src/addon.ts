@@ -1,11 +1,9 @@
-import { BehaviorConfig, BuiltAddonConfig, PluginConfig } from "c3-framework";
-
 const Config: PluginConfig = {
   addonType: "plugin",
   type: "world",
   id: "MasterPose_Vector",
   name: "Vector",
-  version: "1.0.1.0",
+  version: "1.0.2.0",
   category: "general",
   author: "Master Pose",
   description:

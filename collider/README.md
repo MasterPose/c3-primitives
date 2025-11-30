@@ -1,13 +1,13 @@
-<img src="./src/icon.svg" width="100" /><br>
+<img src="./src\icon.svg" width="100" /><br>
 
 # Collider 
 
 A rectangle shape used for physics collision.
 
 Author: Master Pose <br>
-Website: [https://www.construct.net](https://www.construct.net) <br>
-Addon Url: [https://www.construct.net/addons/](https://www.construct.net/addons/) <br>
-Download Latest Version : [Version: 1.0.0.0](https://github.com/Master Pose/Collider/releases/latest) <br>
+Website: [https://masterpose.itch.io/primitives-c3](https://masterpose.itch.io/primitives-c3) <br>
+Addon Url: [https://masterpose.itch.io/primitives-c3](https://masterpose.itch.io/primitives-c3) <br>
+Download Latest Version : [Version: 1.0.2.0](https://github.com/MasterPose/c3-primitives/tree/master/collider/releases/latest) <br>
 
 <br>
 

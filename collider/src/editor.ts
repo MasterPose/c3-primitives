@@ -1,8 +1,7 @@
-// @ts-nocheck
-import { Plugin, initEditor } from "c3-framework";
+import { EditorPlugin } from "@c3framework/core";
 import Config from "./addon";
 
-// * The commented code is for a potential rounded rectangle collider 
+// * The commented code is for a potential rounded rectangle collider
 
 // class RoundedRectangle {
 //     left: number;
@@ -70,38 +69,40 @@ import Config from "./addon";
 
 
 class EditorInstance extends SDK.IWorldInstanceBase {
-    constructor(sdkType: SDK.ITypeBase, inst: SDK.IWorldInstance) {
-        super(sdkType, inst);
-    }
+  constructor(sdkType: SDK.ITypeBase, inst: SDK.IWorldInstance) {
+    super(sdkType, inst);
+  }
 
-    OnPlacedInLayout() {
-        this._inst.SetSize(100, 100);
-    }
+  OnPlacedInLayout() {
+    this._inst.SetSize(100, 100);
+  }
 
-    Draw(iRenderer: SDK.Gfx.IWebGLRenderer, iDrawParams: SDK.Gfx.IDrawParams) {
-        // const rect = new SDK.Rect();
-        // this._inst.GetQuad().getBoundingBox(rect);
+  Draw(iRenderer: SDK.Gfx.IWebGLRenderer, iDrawParams: SDK.Gfx.IDrawParams) {
+    // const rect = new SDK.Rect();
+    // this._inst.GetQuad().getBoundingBox(rect);
 
-        // const radius = this._inst.GetPropertyValue('radius');
-        // const angle = this._inst.GetAngle();
+    // const radius = this._inst.GetPropertyValue('radius');
+    // const angle = this._inst.GetAngle();
 
-        // const roundedRectangle = new RoundedRectangle(rect, radius * 100, angle);
+    // const roundedRectangle = new RoundedRectangle(rect, radius * 100, angle);
 
-        iRenderer.SetColorFillMode();
-        iRenderer.SetColor(this._inst.GetColor());
-        iRenderer.Quad(this._inst.GetQuad());
-        // roundedRectangle.draw(iRenderer);
-    }
+    iRenderer.SetColorFillMode();
+    iRenderer.SetColor(this._inst.GetColor());
+    iRenderer.Quad(this._inst.GetQuad());
+    // roundedRectangle.draw(iRenderer);
+  }
 
-    LoadC2Property(name: string, valueString: string) {
-        return false;
-    }
+  LoadC2Property(name: string, valueString: string) {
+    return false;
+  }
 }
 
-const A_C = SDK.Plugins[Config.id] = Plugin.Editor.Base(Config);
+const A_C = SDK.Plugins[Config.id] = EditorPlugin.Base(Config);
 
 A_C.Register(Config.id, A_C);
 
-A_C.Type = Plugin.Editor.Type(Config);
+// @ts-expect-error
+A_C.Type = EditorPlugin.Type(Config);
 
+// @ts-expect-error
 A_C.Instance = EditorInstance;
