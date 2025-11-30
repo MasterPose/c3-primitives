@@ -6,7 +6,6 @@ import type IDomSideType from "./type";
 
 const DOM_ID = 'MasterPose_DomSide:DOM_Handler';
 
-
 @AceClass()
 class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBase) {
   _lastMessageId: DomSideMessageId;
@@ -40,9 +39,15 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
     });
   }
 
-  @Action()
-  async importFile(
+  @Action({
+    listName: 'Import script',
+    displayText: 'Import {0}',
+    description: 'Loads a .js file in the DOM side.',
+    highlight: true
+  })
+  async importScript(
     @Param({
+      desc: 'Script file to load in the DOM Side',
       // @ts-ignore
       filter: ".js"
     })
@@ -66,21 +71,31 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
   }
 
   @Action({
-    listName: 'Send Event',
+    listName: 'Send event',
+    displayText: 'Send {0}({1})',
     category: 'callDomSide',
+    description: 'Sends an event to the DOM Side.',
   })
   send(
+    @Param({ desc: "Event name to send." })
     tag: string,
+    @Param({ desc: "Data to send attached to the event." })
     data: any,
   ) {
     this._postToDOM('SendEvent', [data, tag] as DomSideMessage);
   }
 
   @Action({
+    listName: 'Invoke',
+    displayText: 'Invoke {0}({1})',
     category: 'callDomSide',
+    description: "Invokes a procedure call from the DOM Side.",
+    highlight: true,
   })
   async invoke(
+    @Param({ desc: "DOM Side procedure name to execute." })
     tag: string,
+    @Param({ desc: "Data to send with the call." })
     data: any,
   ): Promise<DomSideMessageValue> {
     return await this._postToDOMAsync('InvokeProcedure', [data, tag] as DomSideMessage).then((e) => {
@@ -95,30 +110,40 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
   }
 
   @Trigger({
-    displayText: "On Invoke {0} Callback",
+    listName: 'On invoke response',
+    displayText: "On {0} response",
     category: 'callDomSideResponse',
+    description: 'Triggers after DOM Side returns a value from an "Invoke" call.',
+    highlight: true
   })
   onInvokeCallback(
+    @Param({ desc: "Tag of the procedure call name." })
     tag: string
   ) {
     return tag === this._lastMessageId;
   }
 
   @Action({
+    listName: 'Set return value',
+    displayText: 'Return {0}',
+    description: 'Sets the value to return to the DOM Side from a procedure call. Use this inside the "On handle" trigger.',
     category: 'handleDomSide',
   })
   setReturnValue(
+    @Param({ desc: "Value to return to the DOM Side." })
     value: any
   ) {
     this._invokeReturnData = value;
   }
 
   @Trigger({
-    listName: "On Handle",
-    displayText: "On Handle {0}",
-    category: 'handleDomSide'
+    listName: "On handle",
+    displayText: "On handle {0}",
+    category: 'handleDomSide',
+    description: 'Registers a procedure call that the DOM Side can call. [u]You can only register one event for each tag[/u].',
   })
   onHandle(
+    @Param({ desc: "Name of the procedure call you want to register." })
     tag: string
   ) {
     if (this._invokeWasFound) return false;
@@ -127,16 +152,21 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
   }
 
   @Trigger({
-    displayText: "On Event {0}",
+    listName: 'On event',
+    displayText: "On event {0}",
+    description: 'Triggers when the DOM Side sends an event with the given tag / id.',
     category: 'handleDomSide'
   })
   onEvent(
+    @Param({ desc: "Name of the event you want to listen." })
     tag: string
   ) {
     return tag === this._lastMessageId;
   }
 
   @Trigger({
+    listName: 'On any event',
+    description: 'Triggers when the DOM Side sends any event',
     category: 'handleDomSide'
   })
   onAnyEvent() {
@@ -144,6 +174,7 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
   }
 
   @Expression({
+    description: 'Contains the last relevant IPC message sent. Use this on all the triggers available.',
     category: 'callDomSideResponse'
   })
   message(): any {
@@ -151,6 +182,7 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
   }
 
   @Expression({
+    description: 'Contains the last relevant IPC message tag/id sent. Use this on all the triggers available.',
     category: 'callDomSideResponse'
   })
   messageTag(): string {
@@ -158,19 +190,29 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
   }
 
   @Expression({
+    description: 'If you sent an object or array message, use a dot notation path to get a value from it.',
     category: 'callDomSideResponse'
   })
   fromMessage(
+    @Param({ desc: "The dot-notation path to obtain." })
     path: string
   ): any {
     return dot(path, this._lastMessageValue) ?? '';
   }
 
   @Expression({
+    description: 'Stringifies the last relevant IPC message sent.',
     category: 'callDomSideResponse'
   })
   messageAsJSON() {
-    return this._lastMessageValue ? JSON.stringify(this._lastMessageValue) : '';
+    return JSON.stringify(this._lastMessageValue);
+  }
+
+  @Expression({
+    description: "Gets an human-readable JSON of the last relevant IPC message sent.",
+  })
+  messageAsBeautifiedJSON(): string {
+    return JSON.stringify(this._lastMessageValue, null, 4);
   }
 
   #onSendEvent(data: JSONValue, id: string) {
@@ -203,6 +245,9 @@ class IDomSideInstance extends Plugin.Instance(Config, globalThis.ISDKInstanceBa
 
   async #onInvokeProcedure(data: JSONValue, id: string): Promise<DomSideMessageValue> {
     const callback = this._bus.getInvokeHandlers().get(id);
+
+    this._lastMessageId = id;
+    this._lastMessageValue = data;
 
     if (!callback) {
       this._invokeReturnData = undefined;
