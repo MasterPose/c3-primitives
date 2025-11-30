@@ -1,49 +1,96 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/C3Framework/.github/main/assets/banner-framework.png" alt="">
-</p>
+<img src="./src/icon.svg" width="100" /><br>
 
-## About C3 Framework
+# Dom Side
 
-C3 Framework is a set of TypeScript utilities and a CLI tool to automate the process of creating [Construct 3](https://construct.net) plugins, behaviors and themes, in a expressive and elegant way, **without code repetition nor boilerplate**.
+Allows you to load scripts to the DOM Side from the Worker & to communicate between the two using IPC calls.
 
-With C3 Framework you don't need 10+ configuration files, you just write code, and from it, C3 Framework reads it, understands it and generates all the boilerplate for you!
+Author: Master Pose <br>
+Website: [https://masterpose.itch.io/primitives-c3](https://masterpose.itch.io/primitives-c3) <br>
+Addon Url: [https://masterpose.itch.io/primitives-c3](https://masterpose.itch.io/primitives-c3) <br>
+Download Latest Version : [Version: 1.0.0.0](https://github.com/MasterPose/c3-primitives/tree/master/domside/releases/latest) <br>
 
-C3 Framework features:
+<br>
 
-- **Fully configurable**: Structure your project as you need.
-- **Highly-typed**: develop Behaviors & Plugins using TypeScript.
-- **ACEs Decorators**: All the ACE config is done in one single place, inside the same code.
-- **File scanning**: TypeScript definitions and File dependencies will be automatically detected and added.
-- **Multi-language support**: With an easy dot-notation/Laravel-inspired translation system for all strings.
-- **Themes**: Create your own themes with SCSS/SASS, with color palettes and variations generation.
-- **Development Server**: Just run a command and start developing!
+<sub>
 
-C3 Framework is meant for you to write the **less amount of code possible**, so you'll be surprised how quickly you start building your own plugins!
+Made using [c3-framework](https://github.com/C3Framework/framework)
+
+</sub>
+
+## Table of Contents
+
+- [Usage](#usage)
+- [Examples Files](#examples-files)
+- [Properties](#properties)
+- [Actions](#actions)
+- [Conditions](#conditions)
+- [Expressions](#expressions)
+
+---
 
 ## Usage
 
-Build your project using:
+First you must install the dependencies via NPM using:
 
 ```
-npm run build
+npm install
 ```
 
-Run a development server using:
+To build the addon, run the following command:
 
 ```
-npm run dev
+npx c3fo build
 ```
 
-Generate documentation using:
+To start the dev server, run:
 
 ```
-npm run docs
+npx c3fo build -D
 ```
 
-For more information use:
+The build uses the `addon.ts` file for the configurations and the `runtime.ts` file as the entry point to generate everything else.
+The files defined with `@AceClass` contain all the Actions, Conditions and Expressions logic and configuration, you may want to check them.
 
-```
-npx c3fo
-```
+## Examples Files
 
-Or check the [framework core repository](https://github.com/C3Framework/core).
+- [demo](./examples/demo.c3p)
+<br>
+
+---
+
+## Properties
+
+| Property Name | Description | Type |
+| --- | --- | --- |
+
+
+---
+
+## Actions
+
+| Action | Description | Params |
+| --- | --- | --- |
+| Import File |  | File *(projectfile)* <br> |
+| Send Event |  | Tag *(string)* <br>Data *(any)* <br> |
+| Invoke |  | Tag *(string)* <br>Data *(any)* <br> |
+| Set Return Value |  | Value *(any)* <br> |
+
+---
+## Conditions
+
+| Condition | Description | Params |
+| --- | --- | --- |
+| On Invoke  Callback |  | Tag *(string)* <br> |
+| On Handle |  | Tag *(string)* <br> |
+| On Event |  | Tag *(string)* <br> |
+| On Any Event |  |  |
+
+---
+## Expressions
+
+| Expression | Description | Return Type | Params |
+| --- | --- | --- | --- |
+| message |  | any |  |
+| messageTag |  | string |  |
+| fromMessage |  | any | Path *(string)* <br> |
+| messageAsJSON |  | any |  |
