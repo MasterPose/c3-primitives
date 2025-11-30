@@ -12,10 +12,10 @@ const Config: PluginConfig = {
     "A 2-element structure that represents 2D coordinates or any other pair of numeric values.",
   icon: "icon.svg",
   editorScripts: ["editor.js"],
-  website: "https://www.construct.net",
-  documentation: "https://www.construct.net",
-  addonUrl: "https://www.construct.net/addons/",
-  githubUrl: "https://github.com/Master Pose/Vector",
+  website: "https://masterpose.itch.io/primitives-c3",
+  documentation: "https://masterpose.itch.io/primitives-c3",
+  addonUrl: 'https://masterpose.itch.io/primitives-c3',
+  githubUrl: "https://github.com/MasterPose/c3-primitives/tree/master/vector",
   info: {
     Set: {
       CanBeBundled: true,

@@ -16,7 +16,7 @@ const Config: PluginConfig = {
   website: "https://masterpose.itch.io/primitives-c3",
   documentation: "https://masterpose.itch.io/primitives-c3",
   addonUrl: 'https://masterpose.itch.io/primitives-c3',
-  githubUrl: "https://github.com/MasterPose/c3-primitives/domside",
+  githubUrl: "https://github.com/MasterPose/c3-primitives/tree/master/domside",
   info: {
     Set: {
       CanBeBundled: true,

@@ -11,10 +11,10 @@ const Config: PluginConfig = {
   description: "A rectangle shape used for physics collision.",
   icon: "icon.svg",
   editorScripts: ['editor.js'],
-  website: "https://www.construct.net",
-  documentation: "https://www.construct.net",
-  addonUrl: 'https://www.construct.net/addons/',
-  githubUrl: "https://github.com/Master Pose/Collider",
+  website: "https://masterpose.itch.io/primitives-c3",
+  documentation: "https://masterpose.itch.io/primitives-c3",
+  addonUrl: 'https://masterpose.itch.io/primitives-c3',
+  githubUrl: "https://github.com/MasterPose/c3-primitives/tree/master/collider",
   info: {
     Set: {
       CanBeBundled: true,
@@ -33,20 +33,7 @@ const Config: PluginConfig = {
     }
   },
   fileDependencies: {},
-  properties: [
-    // {
-    //   id: 'radius',
-    //   name: 'Radius',
-    //   desc: 'The "roundness" of the collider',
-    //   type: 'percent',
-    //   options: {
-    //     interpolatable: false,
-    //     initialValue: 0,
-    //     minValue: 0,
-    //     maxValue: 100,
-    //   }
-    // }
-  ],
+  properties: [],
   aceCategories: {
     general: "General",
   },
