@@ -10,6 +10,7 @@ const base = cwd();
 const paths = [
     'collider',
     'vector',
+    'domside'
 ];
 
 const promises = paths.map((path) => {

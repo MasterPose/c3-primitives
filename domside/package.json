@@ -1,0 +1,16 @@
+{
+  "name": "dom-side",
+  "type": "module",
+  "description": "Addon for Construct 3",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "c3fo build",
+    "dev": "c3fo build --dev",
+    "doc": "c3fo doc"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@c3framework/core": "^1.0.7",
+    "dot-path-value": "^0.0.11"
+  }
+}
