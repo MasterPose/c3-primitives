@@ -9,6 +9,9 @@ const Config: PluginConfig = {
   description: "A rectangle shape used for physics collision.",
   icon: "icon.svg",
   editorScripts: ['editor.js'],
+  interface: {
+    instanceName: 'IColliderInstance'
+  },
   website: "https://masterpose.itch.io/primitives-c3",
   documentation: "https://masterpose.itch.io/primitives-c3",
   addonUrl: 'https://masterpose.itch.io/primitives-c3',

@@ -11,7 +11,7 @@ const Config: PluginConfig = {
   domSideScripts: ['domSide.js'],
   editorScripts: ['editor.js'],
   interface: {
-    instanceName: 'IDomSide'
+    instanceName: 'IDomSideInstance'
   },
   website: "https://masterpose.itch.io/primitives-c3",
   documentation: "https://masterpose.itch.io/primitives-c3",

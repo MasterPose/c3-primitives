@@ -10,6 +10,9 @@ const Config: PluginConfig = {
     "A 2-element structure that represents 2D coordinates or any other pair of numeric values.",
   icon: "icon.svg",
   editorScripts: ["editor.js"],
+  interface: {
+    instanceName: 'IVectorInstance'
+  },
   website: "https://masterpose.itch.io/primitives-c3",
   documentation: "https://masterpose.itch.io/primitives-c3",
   addonUrl: 'https://masterpose.itch.io/primitives-c3',
