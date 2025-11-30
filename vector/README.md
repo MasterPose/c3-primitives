@@ -1,6 +1,6 @@
-<img src="./src\icon.svg" width="100" /><br>
+<img src="./src/icon.svg" width="100" /><br>
 
-# Vector 
+# Vector
 
 A 2-element structure that represents 2D coordinates or any other pair of numeric values.
 
@@ -13,7 +13,7 @@ Download Latest Version : [Version: 1.0.2.0](https://github.com/MasterPose/c3-pr
 
 <sub>
 
-Made using [c3-framework](https://github.com/C3Framework/framework) 
+Made using [c3-framework](https://github.com/C3Framework/framework)
 
 </sub>
 
@@ -49,7 +49,7 @@ npx c3fo build -D
 ```
 
 The build uses the `addon.ts` file for the configurations and the `runtime.ts` file as the entry point to generate everything else.
-The files defined with `@AceClass` contain all the Actions, Conditions and Expressions logic and configuration, you may want to check them. 
+The files defined with `@AceClass` contain all the Actions, Conditions and Expressions logic and configuration, you may want to check them.
 
 ## Examples Files
 

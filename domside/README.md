@@ -53,7 +53,7 @@ The files defined with `@AceClass` contain all the Actions, Conditions and Expre
 
 ## Examples Files
 
-- [demo](./examples/demo.c3p)
+- [demo-domside](./examples/demo-domside.c3p)
 <br>
 
 ---
@@ -70,27 +70,28 @@ The files defined with `@AceClass` contain all the Actions, Conditions and Expre
 
 | Action | Description | Params |
 | --- | --- | --- |
-| Import File |  | File *(projectfile)* <br> |
-| Send Event |  | Tag *(string)* <br>Data *(any)* <br> |
-| Invoke |  | Tag *(string)* <br>Data *(any)* <br> |
-| Set Return Value |  | Value *(any)* <br> |
+| Import script | Loads a .js file in the DOM side. | File *(projectfile)* <br> |
+| Send event | Sends an event to the DOM Side. | Tag *(string)* <br>Data *(any)* <br> |
+| Invoke | Invokes a procedure call from the DOM Side. | Tag *(string)* <br>Data *(any)* <br> |
+| Set return value | Sets the value to return to the DOM Side from a procedure call. Use this inside the "On handle" trigger. | Value *(any)* <br> |
 
 ---
 ## Conditions
 
 | Condition | Description | Params |
 | --- | --- | --- |
-| On Invoke  Callback |  | Tag *(string)* <br> |
-| On Handle |  | Tag *(string)* <br> |
-| On Event |  | Tag *(string)* <br> |
-| On Any Event |  |  |
+| On invoke response | Triggers after DOM Side returns a value from an "Invoke" call. | Tag *(string)* <br> |
+| On handle | Registers a procedure call that the DOM Side can call. [u]You can only register one event for each tag[/u]. | Tag *(string)* <br> |
+| On event | Triggers when the DOM Side sends an event with the given tag / id. | Tag *(string)* <br> |
+| On any event | Triggers when the DOM Side sends any event |  |
 
 ---
 ## Expressions
 
 | Expression | Description | Return Type | Params |
 | --- | --- | --- | --- |
-| message |  | any |  |
-| messageTag |  | string |  |
-| fromMessage |  | any | Path *(string)* <br> |
-| messageAsJSON |  | any |  |
+| messageAsBeautifiedJSON | Gets an human-readable JSON of the last relevant IPC message sent. | string |  |
+| message | Contains the last relevant IPC message sent. Use this on all the triggers available. | any |  |
+| messageTag | Contains the last relevant IPC message tag/id sent. Use this on all the triggers available. | string |  |
+| fromMessage | If you sent an object or array message, use a dot notation path to get a value from it. | any | Path *(string)* <br> |
+| messageAsJSON | Stringifies the last relevant IPC message sent. | any |  |
